@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mybatis_test.mapper.EnrollmentMapper">
+
+    <select id="findAll" resultType="EnrollmentDto">
+        SELECT
+            enrollment_id,
+            student_id,
+            course_id,
+            semester,
+            status
+        FROM enrollment
+        ORDER BY enrollment_id
+    </select>
+
+    <select id="findByStudentId" parameterType="long" resultType="EnrollmentDto">
+        SELECT
+            enrollment_id,
+            student_id,
+            course_id,
+            semester,
+            status
+        FROM enrollment
+        WHERE student_id = #{studentId}
+        ORDER BY enrollment_id
+    </select>
+
+    <insert id="insert" parameterType="EnrollmentDto">
+        INSERT INTO enrollment (
+            student_id,
+            course_id,
+            semester,
+            status
+        ) VALUES (
+            #{studentId},
+            #{courseId},
+            #{semester},
+            #{status}
+        )
+    </insert>
+
+    <delete id="deleteById" parameterType="long">
+        DELETE FROM enrollment
+        WHERE enrollment_id = #{enrollmentId}
+    </delete>
+
+</mapper>

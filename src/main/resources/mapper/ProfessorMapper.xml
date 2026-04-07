@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mybatis_test.mapper.ProfessorMapper">
+
+    <select id="findAll" resultType="ProfessorDto">
+        SELECT
+            professor_id,
+            professor_no,
+            name,
+            department,
+            office
+        FROM professor
+        ORDER BY professor_id
+    </select>
+
+    <select id="findById" parameterType="long" resultType="ProfessorDto">
+        SELECT
+            professor_id,
+            professor_no,
+            name,
+            department,
+            office
+        FROM professor
+        WHERE professor_id = #{professorId}
+    </select>
+
+</mapper>

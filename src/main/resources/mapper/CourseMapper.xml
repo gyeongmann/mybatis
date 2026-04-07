@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mybatis_test.mapper.CourseMapper">
+
+    <select id="findAll" resultType="CourseDto">
+        SELECT
+            course_id,
+            course_code,
+            course_name,
+            credit,
+            professor_id
+        FROM course
+        ORDER BY course_id
+    </select>
+
+    <select id="findById" parameterType="long" resultType="CourseDto">
+        SELECT
+            course_id,
+            course_code,
+            course_name,
+            credit,
+            professor_id
+        FROM course
+        WHERE course_id = #{courseId}
+    </select>
+
+</mapper>
