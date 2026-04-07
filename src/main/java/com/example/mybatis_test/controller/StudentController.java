@@ -3,11 +3,12 @@ package com.example.mybatis_test.controller;
 import com.example.mybatis_test.dto.StudentDto;
 import com.example.mybatis_test.service.StudentService;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@RestController
+@Controller
 @RequestMapping("/students")
 @RequiredArgsConstructor
 public class StudentController {
@@ -15,8 +16,9 @@ public class StudentController {
     private final StudentService studentService;
 
     @GetMapping
-    public List<StudentDto> findAll() {
-        return studentService.findAll();
+    public String findAll(Model model) {
+        model.addAttribute("students", studentService.findAll());
+        return "students";
     }
 
     @GetMapping("/{id}")
